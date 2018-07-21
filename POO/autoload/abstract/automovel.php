@@ -9,7 +9,7 @@ interface Veiculo{
 
 }
 
-class Civic implements Veiculo{
+abstract class Automovel implements Veiculo{
 
     public function acelerar($velocidade){
         echo "O veícuo acelerou até ". $velocidade . " km/h";
@@ -24,9 +24,5 @@ class Civic implements Veiculo{
         echo "O veícuo trocou a marcha para a  ". $marcha . " marcha";
     }
 }
-
-$carro = new Civic(); 
-
-$carro->trocarMarcha(1); 
 
 ?>
