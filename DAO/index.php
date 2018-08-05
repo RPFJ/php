@@ -16,10 +16,17 @@ require_once("class/config.php");
 
 //echo json_encode($search);
 
-$usuario = new Usuario();
+//$usuario = new Usuario();
 
-$usuario->login("login", "senha");
+//$usuario->login("login", "senha");
 
-echo $usuario; 
+//echo $usuario; 
 
+
+$aluno = new Usuario("usuario", "senha"); 
+
+
+$aluno->insert(); 
+
+echo $aluno; 
 ?>

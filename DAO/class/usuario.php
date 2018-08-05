@@ -63,12 +63,7 @@ class Usuario{
         )); 
 
         if(isset($results[0])){
-            $row = $results[0];
-
-            $this->setIdUsuario($row['id_usuario']);
-            $this->setDescLogin($row['desc_login']);
-            $this->setDescSenha($row['desc_senha']);
-            $this->setDtCadastro(new DateTime($row['dt_cadastro']));
+            $this->setData($results[0]);
         }
     }
 
@@ -94,17 +89,34 @@ class Usuario{
         )); 
 
         if(isset($results[0])){
-            $row = $results[0];
-
-            $this->setIdUsuario($row['id_usuario']);
-            $this->setDescLogin($row['desc_login']);
-            $this->setDescSenha($row['desc_senha']);
-            $this->setDtCadastro(new DateTime($row['dt_cadastro']));
+            $this->setData($results[0]);
         }else{
             throw new Exception("Login e/ou senha inválidos"); 
         }
+    }
 
+    public function setData($data){
+        $this->setIdUsuario($data['id_usuario']);
+        $this->setDescLogin($data['desc_login']);
+        $this->setDescSenha($data['desc_senha']);
+        $this->setDtCadastro(new DateTime($data['dt_cadastro']));
+    }
 
+    public function insert(){
+        $sql = new Sql();
+        $results =  $sql->select("CALL PRC_INSERT_USUARIOS(:LOGIN, :PASSWORD)", array(
+            ':LOGIN'=>$this->getDescLogin(),
+            ':PASSWORD'=>$this->getDescSenha()
+        ));
+        
+        if(isset($results)){
+            $this->setData($results[0]);
+        }
+    }
+
+    public function __construct($login =  "", $password = ""){
+        $this->setDescLogin($login);
+        $this->setDescSenha($password); 
     }
 
     public function __toString(){
