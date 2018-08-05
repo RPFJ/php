@@ -25,7 +25,5 @@ foreach($usuarios as $row){
 }
 fclose($file); 
 
-
-
-
+echo ("CSV GENEREATED SUCCESSFULLY"); 
 ?>
