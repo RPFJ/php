@@ -114,6 +114,25 @@ class Usuario{
         }
     }
 
+    public function update($login, $password){
+        
+        $this->setDescLogin($login);
+        $this->setdescSenha($password);
+       
+        $sql = new Sql();
+
+        $results = $sql->query("UPDATE tb_usuarios SET desc_login = :LOGIN, desc_senha = :PASSWORD", array(
+            ':LOGIN'=>$this->getDescLogin(),
+            ':PASSWORD'=>$this->getDescSenha(),
+            ':ID'=>$this->getIdUsuario()
+        ));
+
+        if(isset($results[0])){
+            $this->setData($results[0]);
+            
+        }
+    }
+
     public function __construct($login =  "", $password = ""){
         $this->setDescLogin($login);
         $this->setDescSenha($password); 
