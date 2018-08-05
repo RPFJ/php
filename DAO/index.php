@@ -21,10 +21,15 @@ require_once("class/config.php");
 // $aluno->insert(); 
 // echo $aluno; 
 
+// $usuario = new Usuario();
+// $usuario->loadById(8);
+// $usuario->update("professor", "senhaprofessor");
+// echo $usuario;
+
+
 $usuario = new Usuario();
-
-$usuario->loadById(8);
-$usuario->update("professor", "senhaprofessor");
-
+$usuario->loadById(3);
+$usuario->delete();
 echo $usuario;
+
 ?>
